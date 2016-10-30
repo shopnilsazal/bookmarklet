@@ -5,8 +5,11 @@ from bookmarks.models import Category, Page
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    fields = ['name', 'views', 'likes']
+    fields = ['name', 'slug', 'views', 'likes']
     list_display = ('name', 'views', 'likes')
+    prepopulated_fields = {
+        'slug': ('name', )
+    }
 
 
 class PageAdmin(admin.ModelAdmin):

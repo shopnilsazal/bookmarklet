@@ -3,7 +3,48 @@
 {% block content %}
 
     <div class="container">
-    <h1 class="title is-1">Bookmarklet</h1>
+        <h1 class="title is-1">Bookmarklet</h1>
+        <div class="columns">
+            <div class="column">
+                {% if categories %}
+                    <nav class="panel">
+                        <p class="panel-heading">
+                            Most Liked Categories
+                        </p>
+                        {% for category in categories %}
+                            <a class="panel-block" href="/bookmarks/category/{{ category.slug }}">
+                                {{ category.name }}
+                            </a>
+                        {% endfor %}
+
+                        {% else %}
+                        <p class="panel-block">No category found.</p>
+                    </nav>
+
+                {% endif %}
+            </div>
+            <div class="column">
+                {% if pages %}
+                    <nav class="panel">
+                        <p class="panel-heading">
+                            Most Viewed Pages
+                        </p>
+                        {% for page in pages %}
+                            <a class="panel-block" href="{{ page.url }}" target="_blank">
+                                {{ page.title }}
+                            </a>
+                        {% endfor %}
+
+                        {% else %}
+                        <p class="panel-block">No page found.</p>
+                    </nav>
+
+                {% endif %}
+            </div>
+            <div class="column">
+                Third column
+            </div>
+        </div>
     </div>
 
 {% endblock %}

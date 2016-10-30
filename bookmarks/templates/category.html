@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <h1 class="title is-1">Bookmarklet</h1>
+        <div class="columns">
+            <div class="column">
+                {% if category %}
+                    <nav class="panel">
+                        <p class="panel-heading">
+                            {{ category.name }}
+                        </p>
+                        {% if pages %}
+                            {% for page in pages %}
+                                <a class="panel-block" href="{{ page.url }}" target="_blank">
+                                    {{ page.title }}
+                                </a>
+                            {% endfor %}
+                        {% endif %}
+
+                        {% else %}
+                        <p class="panel-block">No category found.</p>
+                    </nav>
+                {% endif %}
+            </div>
+            <div class="column">
+                Second column
+            </div>
+            <div class="column">
+                Third column
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
