@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <h1 class="title is-1">Add a Category.</h1>
+        <div class="columns">
+            <div class="column">
+                <form action="/bookmarks/add-category/" id="category-form" method="post">
+                    {% csrf_token %}
+                    {% for hidden in form.hidden_fields %}
+                        {{ hidden }}
+                    {% endfor %}
+                    {% for field in form.visible_fields %}
+                        {% if field.errors %}
+                            <div class="notification is-danger">{{ field.errors }}</div>
+                        {% endif %}
+                        <label class="label">{{ field.help_text }}</label>
+                        {{ field }}
+
+                    {% endfor %}
+
+                    <input class="button is-info" type="submit" name="submit" value="Create Category">
+
+                </form>
+            </div>
+            <div class="column"></div>
+        </div>
+    </div>
+
+{% endblock %}

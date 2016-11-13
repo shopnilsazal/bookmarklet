@@ -3,7 +3,6 @@
 {% block content %}
 
     <div class="container">
-        <h1 class="title is-1">Bookmarklet</h1>
         <div class="columns">
             <div class="column">
                 {% if category %}
@@ -11,6 +10,7 @@
                         <p class="panel-heading">
                             {{ category.name }}
                         </p>
+
                         {% if pages %}
                             {% for page in pages %}
                                 <a class="panel-block" href="{{ page.url }}" target="_blank">
@@ -18,6 +18,8 @@
                                 </a>
                             {% endfor %}
                         {% endif %}
+
+                        <a class="button is-info panel-block" href="/bookmarks/category/{{ category.slug }}/add-page/">Add Page</a>
 
                         {% else %}
                         <p class="panel-block">No category found.</p>
@@ -27,9 +29,7 @@
             <div class="column">
                 Second column
             </div>
-            <div class="column">
-                Third column
-            </div>
+
         </div>
     </div>
 
