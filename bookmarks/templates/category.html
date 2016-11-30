@@ -19,7 +19,7 @@
                             {% endfor %}
                         {% endif %}
 
-                        <a class="button is-info panel-block" href="/bookmarks/category/{{ category.slug }}/add-page/">Add Page</a>
+                        <a class="button is-info panel-block" href="{% url 'bookmarklet:show_category' category.slug %}add-page/">Add Page</a>
 
                         {% else %}
                         <p class="panel-block">No category found.</p>

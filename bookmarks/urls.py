@@ -1,6 +1,8 @@
 from django.conf.urls import url
 from .views import index, show_category, add_category, add_page
 
+app_name = 'bookmarklet'
+
 urlpatterns = [
     url(r'^$', index, name='index'),
     url(r'^add-category/$', add_category, name='add_category'),

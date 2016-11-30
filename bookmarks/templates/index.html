@@ -12,7 +12,7 @@
                             Most Liked Categories
                         </p>
                         {% for category in categories %}
-                            <a class="panel-block" href="/bookmarks/category/{{ category.slug }}">
+                            <a class="panel-block" href="{% url 'bookmarklet:show_category' category.slug %}">
                                 {{ category.name }}
                             </a>
                         {% endfor %}
