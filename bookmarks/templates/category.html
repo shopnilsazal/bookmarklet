@@ -1,9 +1,15 @@
 {% extends 'base.html' %}
+{% load bookmarks_template_tags %}
 
 {% block content %}
 
     <div class="container">
         <div class="columns">
+
+        <div class="column">
+            {% get_all_categories category %}
+        </div>
+
             <div class="column">
                 {% if category %}
                     <nav class="panel">
@@ -19,15 +25,13 @@
                             {% endfor %}
                         {% endif %}
 
-                        <a class="button is-info panel-block" href="{% url 'bookmarklet:show_category' category.slug %}add-page/">Add Page</a>
+                        <a class="button is-info panel-block"
+                           href="{% url 'bookmarklet:show_category' category.slug %}add-page/">Add Page</a>
 
                         {% else %}
                         <p class="panel-block">No category found.</p>
                     </nav>
                 {% endif %}
-            </div>
-            <div class="column">
-                Second column
             </div>
 
         </div>
