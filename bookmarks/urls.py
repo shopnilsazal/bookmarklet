@@ -1,11 +1,12 @@
 from django.conf.urls import url
-from .views import index, show_category, add_category, add_page
+from .views import index, show_category, add_category, add_page, register
 
-app_name = 'bookmarklet'
+app_name = 'bookmarks'
 
 urlpatterns = [
     url(r'^$', index, name='index'),
     url(r'^add-category/$', add_category, name='add_category'),
     url(r'^category/(?P<category_slug>[\w\-]+)/add-page/$', add_page, name='add_page'),
-    url(r'^category/(?P<category_slug>[\w\-]+)/$', show_category, name='show_category')
+    url(r'^category/(?P<category_slug>[\w\-]+)/$', show_category, name='show_category'),
+    url(r'^register/$', register, name='register')
 ]

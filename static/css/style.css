@@ -8,3 +8,11 @@
 .panel .button {
     margin: 15px;
 }
+
+label {
+    margin-top: 20px;
+}
+
+#user_form .button {
+    margin-top: 30px;
+}

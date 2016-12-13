@@ -5,10 +5,10 @@
         </p>
         {% for category in categories %}
             {% if category == act_cat %}
-                <a class="panel-block" href="{% url 'bookmarklet:show_category' category.slug %}">
+                <a class="panel-block" href="{% url 'bookmarks:show_category' category.slug %}">
                     <strong>{{ category.name }}</strong></a>
             {% else %}
-                <a class="panel-block" href="{% url 'bookmarklet:show_category' category.slug %}">
+                <a class="panel-block" href="{% url 'bookmarks:show_category' category.slug %}">
                     {{ category.name }}
                 </a>
             {% endif %}

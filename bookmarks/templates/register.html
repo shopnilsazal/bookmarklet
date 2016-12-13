@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %} Register {% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% if registered %}
+            <h2>Thank you for registering.</h2>
+            <p>Return to <a href="{% url 'index' %}">Homepage</a></p>
+        {% else %}
+            <form id="user_form" action="{% url 'bookmarks:register' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                {% for field in user_form %}
+                    {% if field.errors %}
+                        <div class="notification is-danger">{{ field.errors }}</div>
+                    {% endif %}
+                    <p>
+                        <label class="label">{{ field.label }}</label>
+                        {{ field }}
+                    </p>
+
+                {% endfor %}
+                {% for field in profile_form %}
+                    {% if field.errors %}
+                        <div class="notification is-danger">{{ field.errors }}</div>
+                    {% endif %}
+                    <p>
+                        <label class="label">{{ field.label }}</label>
+                        {{ field }}
+                    </p>
+
+                {% endfor %}
+
+
+                <input class="button is-info" type="submit" name="submit" value="Register">
+            </form>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -6,7 +6,7 @@
         <h1 class="title is-1">Add a Category.</h1>
         <div class="columns">
             <div class="column">
-                <form action="{% url 'bookmarklet:add_category' %}" id="category-form" method="post">
+                <form action="{% url 'bookmarks:add_category' %}" id="category-form" method="post">
                     {% csrf_token %}
                     {% for hidden in form.hidden_fields %}
                         {{ hidden }}
