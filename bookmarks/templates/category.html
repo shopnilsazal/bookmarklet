@@ -6,9 +6,9 @@
     <div class="container">
         <div class="columns">
 
-        <div class="column">
-            {% get_all_categories category %}
-        </div>
+            <div class="column">
+                {% get_all_categories category %}
+            </div>
 
             <div class="column">
                 {% if category %}
@@ -25,8 +25,10 @@
                             {% endfor %}
                         {% endif %}
 
-                        <a class="button is-info panel-block"
-                           href="{% url 'bookmarks:show_category' category.slug %}add-page/">Add Page</a>
+                        {% if user.is_authenticated %}
+                            <a class="button is-info panel-block"
+                               href="{% url 'bookmarks:show_category' category.slug %}add-page/">Add Page</a>
+                        {% endif %}
 
                         {% else %}
                         <p class="panel-block">No category found.</p>

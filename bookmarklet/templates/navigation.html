@@ -1,49 +1,41 @@
 <nav class="nav">
-  <div class="container">
-    <div class="nav-left">
-    <a class="nav-item is-brand title is-3" href="#">
-      Bookmarklet
-    </a>
-  </div>
+    <div class="container">
+        <div class="nav-left">
+            <a class="nav-item is-brand title is-3" href="{% url 'bookmarks:index' %}">
+                Bookmarklet
+            </a>
+        </div>
 
-  <div class="nav-center">
-    <a class="nav-item" href="#">
-      <span class="icon">
-        <i class="fa fa-github"></i>
-      </span>
-    </a>
-    <a class="nav-item" href="#">
-      <span class="icon">
-        <i class="fa fa-twitter"></i>
-      </span>
-    </a>
-  </div>
-
-  <span class="nav-toggle">
+        <span class="nav-toggle">
     <span></span>
     <span></span>
     <span></span>
   </span>
 
-  <div class="nav-right nav-menu">
-    <a class="nav-item is-tab is-active" href="#">
-      Home
-    </a>
-    <a class="nav-item is-tab" href="#">
-      Documentation
-    </a>
-    <a class="nav-item is-tab" href="#">
-      Blog
-    </a>
+        <div class="nav-right nav-menu">
+            <a class="nav-item is-tab" href="{% url 'bookmarks:index' %}">
+                Home
+            </a>
+            <a class="nav-item is-tab" href="{% url 'bookmarks:add_category' %}">
+                Add Category
+            </a>
 
-    <span class="nav-item">
-      <a class="button" >
-        <span>Tweet</span>
+            <span class="nav-item">
+      {% if user.is_authenticated %}
+
+          <a class="button" href="{% url 'bookmarks:logout' %}">
+        <span>Logout</span>
       </a>
-      <a class="button is-primary" href="{% url 'bookmarks:register' %}">
+
+      {% else %}
+          <a class="button" href="{% url 'bookmarks:login' %}">
+        <span>Login</span>
+      </a>
+          <a class="button is-primary" href="{% url 'bookmarks:register' %}">
         <span>Sign Up</span>
       </a>
+      {% endif %}
     </span>
-  </div>
-  </div>
+        </div>
+    </div>
 </nav>

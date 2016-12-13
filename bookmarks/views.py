@@ -1,3 +1,7 @@
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse, HttpResponseRedirect
+from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect
 from bookmarks.models import Category, Page
 from .forms import CategoryForm, PageForm, UserForm, UserProfileForm
@@ -30,6 +34,7 @@ def show_category(request, category_slug):
     return render(request, 'category.html', context)
 
 
+@login_required
 def add_category(request):
     form = CategoryForm()
 
@@ -48,6 +53,7 @@ def add_category(request):
     return render(request, 'add_category.html', context)
 
 
+@login_required
 def add_page(request, category_slug):
     try:
         category = Category.objects.get(slug=category_slug)
@@ -110,3 +116,31 @@ def register(request):
     }
 
     return render(request, 'register.html', context)
+
+
+def user_login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(username=username, password=password)
+
+        if user:
+            if user.is_active:
+                login(request, user)
+                return HttpResponseRedirect(reverse('index'))
+            else:
+                return HttpResponse('Your account is disabled')
+
+        else:
+            print('Invalid login details: {0}, {1}'.format(username, password))
+            return HttpResponse('Invalid login details.')
+
+    else:
+        return render(request, 'login.html', {})
+
+
+@login_required
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('index'))

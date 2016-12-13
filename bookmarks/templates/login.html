@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %} Login {% endblock %}
+
+{% block content %}
+    <div class="container">
+        <form action="{% url 'bookmarks:login' %}" method="post">
+            {% csrf_token %}
+
+            <label for="username" class="label">Username</label>
+            <input type="text" id="username" name="username" class="input">
+
+            <label for="password" class="label">Password</label>
+            <input type="password" id="password" name="password" class="input">
+
+            <input class="button is-info" type="submit" name="submit" value="Login">
+        </form>
+    </div>
+{% endblock %}

@@ -1,9 +1,6 @@
 .nav {
     margin-bottom: 70px;
 }
-.button {
-    margin-top: 15px;
-}
 
 .panel .button {
     margin: 15px;
@@ -13,6 +10,6 @@ label {
     margin-top: 20px;
 }
 
-#user_form .button {
+form .button {
     margin-top: 30px;
 }

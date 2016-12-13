@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from .views import index, show_category, add_category, add_page, register
+from .views import index, show_category, add_category, add_page, register, user_login, user_logout
 
 app_name = 'bookmarks'
 
@@ -8,5 +8,7 @@ urlpatterns = [
     url(r'^add-category/$', add_category, name='add_category'),
     url(r'^category/(?P<category_slug>[\w\-]+)/add-page/$', add_page, name='add_page'),
     url(r'^category/(?P<category_slug>[\w\-]+)/$', show_category, name='show_category'),
-    url(r'^register/$', register, name='register')
+    url(r'^register/$', register, name='register'),
+    url(r'^login/$', user_login, name='login'),
+    url(r'^logout/$', user_logout, name='logout')
 ]
