@@ -1,8 +1,7 @@
 # Bookmarklet
 ### Bookmark management django app.
 
-![alt Screenshot](https://github.com/shopnilsazal/bookmarklet/raw/master/screenshot-1.png "Screenshot")
-![alt Screenshot](https://github.com/shopnilsazal/bookmarklet/raw/master/screenshot-2.png "Screenshot")
+![alt Screenshot](https://github.com/shopnilsazal/bookmarklet/raw/master/screenshot.png "Screenshot")
 
 ## Setting Up
 
