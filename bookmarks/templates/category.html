@@ -15,12 +15,22 @@
                     <nav class="panel">
                         <p class="panel-heading">
                             {{ category.name }}
+                            <button class="button is-small" id="likes" data-catid="{{ category.id }}">Like</button>
+                            <span class="tag is-info is-small" id="likes-count">{{ category.likes }} likes</span>
+                            <span class="tag is-info is-small">{{ category.views }} views</span>
+
                         </p>
 
                         {% if pages %}
                             {% for page in pages %}
-                                <a class="panel-block" href="{{ page.url }}" target="_blank">
+                                <a class="panel-block" href="{% url 'bookmarks:goto' %}?page_id={{ page.id }}"
+                                   target="_blank">
                                     {{ page.title }}
+                                    {% if page.views > 1 %}
+                                        <span class="tag is-info is-small">{{ page.views }} views</span>
+                                    {% elif page.views == 1 %}
+                                        <span class="tag is-info is-small">{{ page.views }} view</span>
+                                    {% endif %}
                                 </a>
                             {% endfor %}
                         {% endif %}

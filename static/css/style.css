@@ -1,9 +1,15 @@
+html {
+    background: #fff;
+}
 .nav {
     margin-bottom: 70px;
 }
 
 .panel .button {
     margin: 15px;
+}
+.panel-heading .button {
+    margin: 0 10px;
 }
 
 label {
@@ -12,4 +18,23 @@ label {
 
 form .button {
     margin-top: 30px;
+}
+ul.menu-list {
+    margin-bottom: 10px;
+}
+
+ul.menu-list li:last-child {
+    margin-bottom: 30px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+ul.menu-list li {
+    border-bottom: 1px solid #dbdbdb;
+    border-left: 1px solid #dbdbdb;
+    border-right: 1px solid #dbdbdb;
+}
+
+.column .control {
+    margin-bottom: 0;
 }

@@ -6,9 +6,9 @@
     <div class="container">
 
         <div class="columns">
-        <div class="column">
-            {% get_all_categories category %}
-        </div>
+            <div class="column">
+                {% get_all_categories category %}
+            </div>
             <div class="column">
                 {% if categories %}
                     <nav class="panel">
@@ -18,6 +18,11 @@
                         {% for category in categories %}
                             <a class="panel-block" href="{% url 'bookmarks:show_category' category.slug %}">
                                 {{ category.name }}
+                                {% if category.likes > 1 %}
+                                    <span class="tag is-info is-small">{{ category.likes }} likes</span>
+                                {% elif category.likes == 1 %}
+                                    <span class="tag is-info is-small">{{ category.likes }} like</span>
+                                {% endif %}
                             </a>
                         {% endfor %}
 
@@ -34,8 +39,14 @@
                             Most Viewed Pages
                         </p>
                         {% for page in pages %}
-                            <a class="panel-block" href="{{ page.url }}" target="_blank">
+                            <a class="panel-block" href="{% url 'bookmarks:goto' %}?page_id={{ page.id }}"
+                               target="_blank">
                                 {{ page.title }}
+                                {% if page.views > 1 %}
+                                    <span class="tag is-info is-small">{{ page.views }} views</span>
+                                {% elif page.views == 1 %}
+                                    <span class="tag is-info is-small">{{ page.views }} view</span>
+                                {% endif %}
                             </a>
                         {% endfor %}
 

@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect
 from bookmarks.models import Category, Page
@@ -24,6 +24,8 @@ def show_category(request, category_slug):
 
     try:
         category = Category.objects.get(slug=category_slug)
+        category.views += 1
+        category.save()
         pages = Page.objects.filter(category=category)
         context['category'] = category
         context['pages'] = pages
@@ -144,3 +146,61 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('index'))
+
+
+def track_url(request):
+    page_id = None
+    url = '/bookmarks/'
+
+    if request.method == 'GET':
+        if 'page_id' in request.GET:
+            page_id = request.GET['page_id']
+
+            try:
+                page = Page.objects.get(id=page_id)
+                page.views += 1
+                page.save()
+                url = page.url
+            except:
+                pass
+
+    return redirect(url)
+
+
+def like_category(request):
+    if request.method == 'GET':
+        likes = 0
+        cat_id = request.GET['category_id']
+        print(request.GET)
+        if cat_id:
+            cat = Category.objects.get(id=int(cat_id))
+            if cat:
+                likes = cat.likes + 1
+                cat.likes = likes
+                cat.save()
+
+        return HttpResponse(likes)
+
+
+def get_category_list(max_results=0, starts_with=''):
+    cat_list = []
+    if starts_with:
+        cat_list = Category.objects.filter(name__startswith=starts_with)
+    if len(cat_list) > max_results:
+        cat_list = cat_list[:max_results]
+
+    return cat_list
+
+
+def suggest_category(request):
+    cat_list = []
+    starts_with = ''
+
+    if request.method == 'GET':
+        starts_with = request.GET['suggestion']
+
+    cat_list = get_category_list(8, starts_with)
+    categories = {cat.slug: cat.name for cat in cat_list}
+
+    return JsonResponse(categories)
+
